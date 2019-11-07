@@ -4,7 +4,9 @@
 
 In Magento 1, if an admin added an `msrp` price, the `msrp` and regular price would display on the product page. Magento 2 added "Minimum Advertised Price" functionality that by default hides the regular price until you click a "Click for price" link. This extension removes that "Minimum Advertised Price" functionality and displays both the `msrp` and regular price.
 
-* Display the `msrp` price value inline on page, rather than requiring a user to interact with the page
+We could have added a custom product attribute called something like `msrp_custom` and modified the templates to output that value. However we took this approach as the `Magento_Msrp` extension has support for updating the `msrp` price when configurable dropdowns are changed, and that alone justified this approach.
+
+* Displays the `msrp` price value inline on page, rather than requiring a user to interact with the page
 * Adds `msrp` display to grouped products (since it doesn't work natively in Magento 2.3.2)
 
 ## Usage Instructions
