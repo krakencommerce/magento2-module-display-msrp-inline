@@ -89,9 +89,7 @@ $priceElementIdPrefix = $block->getPriceElementIdPrefix() ? $block->getPriceElem
     <span id="<?= /* @escapeNotVerified */ $block->getPriceId() ? $block->getPriceId() : $priceElementId ?>" style="display:none"></span>
     <a href="javascript:void(0);"
        id="<?= /* @escapeNotVerified */ ($popupId) ?>"
-       <?php // BEGIN EDIT - Add hidden class?>
-       class="action map-show-info hidden"
-       <?php // END EDIT?>
+       class="action map-show-info"
        data-mage-init='<?= /* @noEscape */ $this->helper('Magento\Framework\Json\Helper\Data')->jsonEncode($data) ?>'><?= /* @escapeNotVerified */ __('Click for price') ?>
     </a>
 <?php else: ?>
@@ -104,9 +102,7 @@ $priceElementIdPrefix = $block->getPriceElementIdPrefix() ? $block->getPriceElem
     <?php $helpLinkId = 'msrp-help-' . $productId . $block->getRandomString(20); ?>
     <a href="javascript:void(0);"
        id="<?= /* @escapeNotVerified */ $helpLinkId ?>"
-       <?php // BEGIN EDIT - Add hidden class ?>
-       class="action map-show-info hidden"
-       <?php // END EDIT?>
+       class="action map-show-info"
        data-mage-init='{"addToCart":{"origin": "info",
                                      "helpLinkId": "#<?= /* @escapeNotVerified */ $helpLinkId ?>",
                                      "productName": "<?= $block->escapeJs($block->escapeHtml($product->getName())) ?>",
