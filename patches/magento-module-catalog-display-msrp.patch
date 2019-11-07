@@ -1,0 +1,19 @@
+Index: Pricing/Render/FinalPriceBox.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Pricing/Render/FinalPriceBox.php	(date 1573152584770)
++++ Pricing/Render/FinalPriceBox.php	(date 1573152584770)
+@@ -80,7 +80,10 @@
+                     'zone' => $this->getZone(),
+                 ]
+             );
+-            $result = $msrpBlock->toHtml();
++            // BEGIN EDIT
++            // Append the existing price block to the MSRP price so that user sees all prices
++            $result = $msrpBlock->toHtml() . $result;
++            // END EDIT
+         }
+ 
+         return $this->wrapResult($result);

@@ -1,0 +1,26 @@
+{
+    "name": "kraken/module-display-msrp-inline",
+    "description": "Display the msrp price value inline on page, rather than requiring a user to interact with the page",
+    "type": "magento2-module",
+    "license": "OSL-3.0",
+    "authors": [
+        {
+            "email": "info@mage2gen.com",
+            "name": "Mage2Gen"
+        },
+        {
+            "email": "erik@krakencommerce.com",
+            "name": "Erik Hansen"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Kraken\\DisplayMsrpInline\\": ""
+        },
+        "files": [
+            "registration.php"
+        ]
+    }
+}
