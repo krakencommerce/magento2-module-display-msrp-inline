@@ -17,7 +17,7 @@ class MsrpPricePlugin
      * @param \Magento\Msrp\Pricing\Price\MsrpPrice $subject
      * @return bool
      */
-    public function beforeIsShowPriceOnGesture(\Magento\Msrp\Pricing\Price\MsrpPrice $subject)
+    public function aroundIsShowPriceOnGesture(\Magento\Msrp\Pricing\Price\MsrpPrice $subject, \Closure $callable)
     {
         return false;
     }
