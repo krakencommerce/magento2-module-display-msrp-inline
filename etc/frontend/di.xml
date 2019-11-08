@@ -4,4 +4,8 @@
     <type name="Magento\GroupedProduct\Model\Product\Type\Grouped">
         <plugin sortOrder="1" name="krakenDisplayMsrpInlineGrouped" type="Kraken\DisplayMsrpInline\Plugin\Model\Product\Type\GroupedPlugin"/>
     </type>
+    <type name="Magento\Msrp\Pricing\Price\MsrpPrice">
+        <plugin sortOrder="1" name="krakenDisplayMsrpInlineMsrpPrice"
+                type="Kraken\DisplayMsrpInline\Plugin\Pricing\Price\MsrpPricePlugin"/>
+    </type>
 </config>
