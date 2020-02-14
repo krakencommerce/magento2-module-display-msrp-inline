@@ -24,6 +24,8 @@ First, apply the patch in `patches/` to the `magento/module-catalog` module usin
 
 The reason we applied this change as a patch instead of a `preference` is that is prevents us from copying forward multiple core methods into this plugin.
 
+You'll need to copy the `vendor/kraken/module-display-msrp-inline/patches/` files to a folder like `patches/composer`.
+
 Snippet of what your `composer.json` file should look like after you apply the patch:
 ```
     "extra": {
@@ -31,8 +33,11 @@ Snippet of what your `composer.json` file should look like after you apply the p
         "composer-exit-on-patch-failure": true,
         "patches": {
             "magento/module-catalog": {
-                "Display MSRP prices in addition to other prices": "vendor/kraken/module-display-msrp-inline/patches/magento-module-catalog-display-msrp.patch"
-            }
+                "Display MSRP prices in addition to other prices": "patches/composer/magento-module-catalog-display-msrp.patch"
+            },
+            "magento/module-swatches": {
+                "Display MSRP prices when swatch options change": "patches/composer/magento-module-swatches-update-msrp-when-swatches-change.patch",
+            },
         }
     }
 ```

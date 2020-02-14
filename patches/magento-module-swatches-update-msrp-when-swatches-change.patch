@@ -1,0 +1,85 @@
+Index: view/frontend/web/js/swatch-renderer.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- view/frontend/web/js/swatch-renderer.js	(date 1573768274448)
++++ view/frontend/web/js/swatch-renderer.js	(date 1573768274448)
+@@ -713,7 +713,8 @@
+                 $wrapper = $this.parents('.' + $widget.options.classes.attributeOptionsWrapper),
+                 $label = $parent.find('.' + $widget.options.classes.attributeSelectedOptionLabelClass),
+                 attributeId = $parent.attr('attribute-id'),
+-                $input = $parent.find('.' + $widget.options.classes.attributeInput);
++                $input = $parent.find('.' + $widget.options.classes.attributeInput),
++                productId;
+ 
+             if ($widget.inProductList) {
+                 $input = $widget.productForm.find(
+@@ -747,9 +748,16 @@
+                 $widget._UpdatePrice();
+             }
+ 
++            // If product is being edited from the cart page, grab that ID
++            productId = _.findKey($widget.options.jsonConfig.index, $widget.options.jsonConfig.defaultValues);
++            if (!productId) {
++                // Otherwise get the ID of the currently selected product
++                productId = this._getSimpleProductId();
++            }
++
+             $(document).trigger('updateMsrpPriceBlock',
+                 [
+-                    parseInt($this.attr('index'), 10) + 1,
++                    productId,
+                     $widget.options.jsonConfig.optionPrices
+                 ]);
+ 
+@@ -923,18 +931,14 @@
+             var $widget = this,
+                 $product = $widget.element.parents($widget.options.selectorProduct),
+                 $productPrice = $product.find(this.options.selectorProductPrice),
+-                options = _.object(_.keys($widget.optionsMap), {}),
++                productId,
+                 result,
+                 tierPriceHtml,
+                 isShow;
+ 
+-            $widget.element.find('.' + $widget.options.classes.attributeClass + '[option-selected]').each(function () {
+-                var attributeId = $(this).attr('attribute-id');
++            productId = this._getSimpleProductId();
+ 
+-                options[attributeId] = $(this).attr('option-selected');
+-            });
+-
+-            result = $widget.options.jsonConfig.optionPrices[_.findKey($widget.options.jsonConfig.index, options)];
++            result = $widget.options.jsonConfig.optionPrices[productId];
+ 
+             $productPrice.trigger(
+                 'updatePrice',
+@@ -981,6 +985,27 @@
+             }.bind(this));
+         },
+ 
++        /**
++         * Returns Simple product Id based on current selected options
++         *
++         * @private
++         * @returns {String|undefined}
++         */
++        _getSimpleProductId: function () {
++            var $widget = this,
++              options = _.object(_.keys($widget.optionsMap), {}),
++              productId;
++
++            $widget.element.find('.' + $widget.options.classes.attributeClass + '[option-selected]').each(function () {
++                var attributeId = $(this).attr('attribute-id');
++
++                options[attributeId] = $(this).attr('option-selected');
++            });
++
++            productId = _.findKey($widget.options.jsonConfig.index, options);
++            return productId;
++        },
++
+         /**
+          * Get prices
+          *
